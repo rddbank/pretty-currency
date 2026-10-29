@@ -1,27 +1,19 @@
 # Changelog
 
-All notable changes to this project will be documented in this file.
+All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
-The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
-and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
+## 0.2.0 (2026-10-29)
 
-## [Unreleased]
 
-### Added
-- Comprehensive test suite with 39 tests covering critical values
-- GitHub Actions CI workflow for automated testing
-- GitHub Release automation via standard-version
-- Automated version management with Conventional Commits
-- Configuration for npm publishing
-- Documentation (README.md, PUBLISHING.md)
+### Features
 
-### Changed
-- Updated package.json with proper ES module configuration
-- Improved library description and keywords
-- Added support for Node.js >= 18.0.0
+* add automated release workflow with standard-version ([784ebdf](https://github.com/Red-Fancy/pretty-currency/commits/784ebdf2122c6da058721e820167f528dde51584))
+* **core:** :zap: add main function ([065010e](https://github.com/Red-Fancy/pretty-currency/commits/065010ee28e7258d57566e96aa0f36daac222943))
 
-### Fixed
-- Fixed CI workflow to use `npm install` instead of `npm ci` (no lock file needed)
+
+### Documentation
+
+* update README description and add package.json file ([a7e8fff](https://github.com/Red-Fancy/pretty-currency/commits/a7e8fff203d5957733b9db987de01dbca6221615))
 
 ## [0.1.6] - Previous Release
 
