@@ -1,6 +1,6 @@
 {
   "name": "@immersedin/pretty-currency",
-  "version": "0.2.1",
+  "version": "0.2.2",
   "description": "Library for pretty print crypto currency values with K, M, B, T suffixes",
   "type": "module",
   "main": "index.js",
