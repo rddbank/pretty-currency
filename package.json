@@ -1,10 +1,23 @@
 {
   "name": "pretty-currency",
   "version": "0.0.1",
-  "description": "library for pretty print crypto currency value",
+  "description": "Library for pretty print crypto currency values with K, M, B, T suffixes",
+  "type": "module",
   "main": "index.js",
+  "exports": {
+    ".": {
+      "import": "./index.js",
+      "require": "./index.js"
+    }
+  },
+  "files": [
+    "index.js",
+    "README.md",
+    "LICENSE"
+  ],
   "scripts": {
-    "test": "node ./test/float.js"
+    "test": "node ./test/float.js",
+    "prepublishOnly": "npm test"
   },
   "repository": {
     "type": "git",
@@ -13,12 +26,20 @@
   "keywords": [
     "pretty",
     "crypto",
-    "numbers"
+    "currency",
+    "numbers",
+    "formatting",
+    "suffix",
+    "kmbt",
+    "cryptocurrency"
   ],
   "author": "immersedin",
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/Red-Fancy/pretty-currency/issues"
   },
-  "homepage": "https://github.com/Red-Fancy/pretty-currency#readme"
+  "homepage": "https://github.com/Red-Fancy/pretty-currency#readme",
+  "engines": {
+    "node": ">=18.0.0"
+  }
 }

@@ -1,0 +1,25 @@
+# Test files
+test/
+*.test.js
+test.js
+
+# CI/CD
+.github/
+.gitlab-ci.yml
+.travis.yml
+
+# Development files
+.gitignore
+.eslintrc*
+.prettierrc*
+.editorconfig
+
+# Documentation (already included in files field)
+# README.md
+# LICENSE
+
+# Misc
+.DS_Store
+*.log
+.vscode/
+.idea/
