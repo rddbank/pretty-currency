@@ -1,6 +1,6 @@
 {
   "name": "pretty-currency",
-  "version": "0.0.1",
+  "version": "0.2.0",
   "description": "Library for pretty print crypto currency values with K, M, B, T suffixes",
   "type": "module",
   "main": "index.js",
@@ -13,11 +13,17 @@
   "files": [
     "index.js",
     "README.md",
-    "LICENSE"
+    "LICENSE",
+    "CHANGELOG.md"
   ],
   "scripts": {
     "test": "node ./test/float.js",
-    "prepublishOnly": "npm test"
+    "prepublishOnly": "npm test",
+    "release": "standard-version",
+    "release:first": "standard-version --first-release",
+    "release:minor": "standard-version --release-as minor",
+    "release:patch": "standard-version --release-as patch",
+    "release:major": "standard-version --release-as major"
   },
   "repository": {
     "type": "git",
@@ -41,5 +47,66 @@
   "homepage": "https://github.com/Red-Fancy/pretty-currency#readme",
   "engines": {
     "node": ">=18.0.0"
+  },
+  "devDependencies": {
+    "standard-version": "^9.5.0"
+  },
+  "standard-version": {
+    "types": [
+      {
+        "type": "feat",
+        "section": "Features"
+      },
+      {
+        "type": "fix",
+        "section": "Bug Fixes"
+      },
+      {
+        "type": "docs",
+        "section": "Documentation"
+      },
+      {
+        "type": "chore",
+        "section": "Chore",
+        "hidden": true
+      },
+      {
+        "type": "style",
+        "section": "Style",
+        "hidden": true
+      },
+      {
+        "type": "refactor",
+        "section": "Refactor",
+        "hidden": true
+      },
+      {
+        "type": "perf",
+        "section": "Performance"
+      },
+      {
+        "type": "test",
+        "section": "Tests",
+        "hidden": true
+      },
+      {
+        "type": "build",
+        "section": "Build",
+        "hidden": true
+      },
+      {
+        "type": "ci",
+        "section": "CI",
+        "hidden": true
+      }
+    ],
+    "commitUrlFormat": "https://github.com/Red-Fancy/pretty-currency/commits/{{hash}}",
+    "compareUrlFormat": "https://github.com/Red-Fancy/pretty-currency/compare/{{previousTag}}...{{currentTag}}",
+    "issueUrlFormat": "https://github.com/Red-Fancy/pretty-currency/issues/{{id}}",
+    "skip": {
+      "tag": false,
+      "commit": false,
+      "bump": false
+    }
   }
 }

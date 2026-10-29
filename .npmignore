@@ -17,9 +17,12 @@ test.js
 # Documentation (already included in files field)
 # README.md
 # LICENSE
+# CHANGELOG.md
 
 # Misc
 .DS_Store
 *.log
 .vscode/
 .idea/
+node_modules/
+package-lock.json

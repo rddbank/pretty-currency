@@ -16,68 +16,116 @@ The GitHub Actions workflow will:
 
 No additional secrets are required for GitHub Releases (uses built-in GITHUB_TOKEN).
 
-## Manual Publishing
+## Automated Release Workflow
 
-To publish manually to npm:
+This project uses **standard-version** for automated version management and changelog generation.
+
+### Conventional Commits
+
+To enable automatic version bumps, commit messages must follow [Conventional Commits](https://www.conventionalcommits.org/) format:
+
+```
+<type>[optional scope]: <description>
+
+[optional body]
+
+[optional footer]
+```
+
+**Types:**
+- `feat:` New feature (triggers minor version bump)
+- `fix:` Bug fix (triggers patch version bump)
+- `docs:` Documentation changes
+- `perf:` Performance improvements
+- `chore:` Maintenance tasks
+- `refactor:` Code refactoring
+- `test:` Test changes
+- `ci:` CI/CD changes
+- `style:` Code style changes
+
+**Examples:**
+```bash
+git commit -m "feat: add support for custom decimal precision"
+git commit -m "fix: handle negative numbers correctly"
+git commit -m "docs: update README with examples"
+```
+
+### Creating a Release
+
+The release process is automated:
 
 ```bash
-# Run tests first
-npm test
+# 1. Make your changes with conventional commits
+git add .
+git commit -m "feat: add new feature"
 
-# Publish to npm
+# 2. Run the release command
+npm run release
+
+# This will:
+# - Automatically bump version based on commits
+# - Update CHANGELOG.md
+# - Update package.json
+# - Create a git tag
+# - Commit the changes
+
+# 3. Push to GitHub
+git push --follow-tags
+
+# This will trigger GitHub Actions to:
+# - Run tests
+# - Create a GitHub Release with changelog
+```
+
+### Manual Version Bumps
+
+If you need to force a specific version type:
+
+```bash
+npm run release:patch   # 0.2.0 -> 0.2.1
+npm run release:minor   # 0.2.0 -> 0.3.0
+npm run release:major   # 0.2.0 -> 1.0.0
+```
+
+### First Release
+
+For the first release of this project:
+
+```bash
+npm run release:first
+git push --follow-tags
+```
+
+## Publishing to npm
+
+After creating a release with standard-version:
+
+```bash
+# The package is ready to publish
 npm publish
 ```
 
-## Automated Publishing
+This will:
+- Run tests automatically (via prepublishOnly hook)
+- Publish to npm with the new version
 
-### GitHub Releases
+## Workflow Summary
 
-The GitHub Actions workflow in `.github/workflows/ci.yml` will:
+1. **Develop**: Make changes with conventional commits
+2. **Release**: Run `npm run release` to bump version and update changelog
+3. **Push**: `git push --follow-tags` to push commits and tags
+4. **GitHub**: CI creates GitHub Release automatically
+5. **npm**: Run `npm publish` to publish to npm
 
-1. **On every push/PR**: Run tests on Node.js 18, 20, and 22
-2. **On tag push**: Create a GitHub Release with auto-generated release notes
+## Available Scripts
 
-To create a release:
-
-```bash
-# Create and push a tag
-npm version patch  # or minor/major
-git push --tags
-
-# This will trigger the GitHub Release workflow
-```
-
-### npm Publishing
-
-npm publishing is manual (to avoid accidental releases):
-
-```bash
-npm publish
-```
-
-## Version Management
-
-To publish a new version:
-
-```bash
-# Update version (follows semantic versioning)
-npm version patch  # 0.0.1 -> 0.0.2
-npm version minor  # 0.0.1 -> 0.1.0
-npm version major  # 0.0.1 -> 1.0.0
-
-# This will also create a git tag
-# Push the tag to trigger CI/CD publishing
-git push --tags
-```
-
-## Pre-release Publishing
-
-For alpha/beta releases:
-
-```bash
-npm version prerelease --preid alpha  # 0.0.1 -> 0.0.2-alpha.0
-npm publish --tag alpha
-```
+- `npm run release` - Automatic version bump based on commits
+- `npm run release:patch` - Force patch version bump
+- `npm run release:minor` - Force minor version bump
+- `npm run release:major` - Force major version bump
+- `npm run release:first` - First release initialization
+- `npm test` - Run tests
+- `npm publish` - Publish to npm
 
 ## Checklist Before Publishing
 
