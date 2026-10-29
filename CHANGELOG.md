@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.2.1](https://github.com/rddbank/pretty-currency/compare/v0.2.0...v0.2.1) (2026-10-29)
+
+
+### Features
+
+* change package name to scoped @immersedin/pretty-currency ([d743c1d](https://github.com/rddbank/pretty-currency/commits/d743c1de1cdb49235a159dc03061c0e48d153592))
+
 ## 0.2.0 (2026-10-29)
 
 
