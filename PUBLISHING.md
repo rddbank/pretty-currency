@@ -8,17 +8,13 @@ Before publishing, ensure you have an npm account:
 - Sign up at https://www.npmjs.com/signup
 - Run `npm login` to authenticate locally
 
-### 2. GitHub Secrets Setup
+### 2. GitHub Actions Setup
 
-For automatic publishing via GitHub Actions, you need to add an NPM_TOKEN:
+The GitHub Actions workflow will:
+- Run tests on Node.js 18, 20, and 22 for every push/PR
+- Create a GitHub Release when you push a tag
 
-1. Go to your GitHub repository settings
-2. Navigate to: Settings → Secrets and variables → Actions
-3. Click "New repository secret"
-4. Name: `NPM_TOKEN`
-5. Value: Your npm authentication token (get it from https://www.npmjs.com/settings/tokens)
-
-**Important:** Create an "Automation" token (not "Read-only") for CI/CD publishing.
+No additional secrets are required for GitHub Releases (uses built-in GITHUB_TOKEN).
 
 ## Manual Publishing
 
@@ -34,10 +30,30 @@ npm publish
 
 ## Automated Publishing
 
+### GitHub Releases
+
 The GitHub Actions workflow in `.github/workflows/ci.yml` will:
 
 1. **On every push/PR**: Run tests on Node.js 18, 20, and 22
-2. **On push to main**: Publish to npm (if tests pass)
+2. **On tag push**: Create a GitHub Release with auto-generated release notes
+
+To create a release:
+
+```bash
+# Create and push a tag
+npm version patch  # or minor/major
+git push --tags
+
+# This will trigger the GitHub Release workflow
+```
+
+### npm Publishing
+
+npm publishing is manual (to avoid accidental releases):
+
+```bash
+npm publish
+```
 
 ## Version Management
 
@@ -72,7 +88,6 @@ npm publish --tag alpha
 - [ ] License is properly set
 - [ ] .npmignore excludes test files and development configs
 - [ ] GitHub Actions workflow is configured
-- [ ] NPM_TOKEN secret is set in GitHub (for automated publishing)
 
 ## Post-Publishing
 
@@ -89,10 +104,11 @@ After publishing:
 - Ensure you're logged in to npm with the correct account
 - Verify you're listed as a maintainer on npm
 
-### "403 Forbidden" in GitHub Actions
-- Check that NPM_TOKEN secret is set correctly
-- Ensure the token has "Automation" permissions, not "Read-only"
-
 ### Package name already taken
 - Check npm for availability: `npm view <package-name>`
 - Choose a different name or use scoped package: `@username/package-name`
+
+### GitHub Release not created
+- Ensure you pushed a tag: `git push --tags`
+- Check that the tag follows semantic versioning (e.g., v1.0.0)
+- Verify tests passed in the CI workflow
