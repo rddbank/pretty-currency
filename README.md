@@ -5,13 +5,13 @@ Library for pretty print crypto currency values with K, M, B, T suffixes.
 ## Installation
 
 ```bash
-npm install pretty-currency
+npm install @immersedin/pretty-currency
 ```
 
 ## Usage
 
 ```javascript
-import { cryptoPretty } from 'pretty-currency';
+import { cryptoPretty } from '@immersedin/pretty-currency';
 
 // Basic usage
 const result = cryptoPretty(1234567);
